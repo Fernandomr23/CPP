@@ -6,7 +6,7 @@
 /*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 18:09:24 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/01/09 19:53:31 by fmorenil         ###   ########.fr       */
+/*   Updated: 2025/01/11 19:18:27 by fmorenil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ class Contact
     
 public:
     Contact(void);
-    ~Contact(void);
+    void setContact(std::string first, std::string last, std::string nick, std::string phone, std::string secret);
+    void getContact(void);
 };
 
 #endif
