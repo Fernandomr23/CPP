@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 18:08:39 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/01/11 19:32:45 by fmorenil         ###   ########.fr       */
+/*   Updated: 2025/01/12 02:16:21 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int main(void)
 		std::cout << "Enter a command (ADD, SEARCH, EXIT)" << std::endl;
 		std::getline(std::cin, command);
 		if (command == "ADD")
-			phoneBook.addContact();
+			phoneBook.newContact();
 		else if (command == "SEARCH")
-			phoneBook.showContacts();
+			phoneBook.showList();
 		else if (command == "EXIT")
 			break;
 		else
