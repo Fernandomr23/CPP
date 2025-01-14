@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/14 14:56:42 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/01/14 16:23:43 by fmorenil         ###   ########.fr       */
+/*   Created: 2025/01/14 15:00:08 by fmorenil          #+#    #+#             */
+/*   Updated: 2025/01/14 17:02:58 by fmorenil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_HPP
-# define ZOMBIE_HPP
-# include <iostream>
+#include "Zombie.hpp"
 
-class Zombie {
-	
-	public:
-	
-	void	announce(void);
-	Zombie(std::string name);
-	~Zombie(void);
+Zombie::Zombie(void) : name("Unnamed") {}
 
-	private:
-	
-	std::string	name;
-};
+Zombie::~Zombie(void) {
+	std::cout << "Zombie object " << this->name << " destroyed" << std::endl;
+}
 
-#endif
+void	Zombie::setName(std::string name) {
+	this->name = name;
+}
+
+void	Zombie::announce(void) {
+	std::cout << this->name << ": " << "BraiiiiiiinnnzzzZ..." << std::endl;
+}
