@@ -4,7 +4,7 @@ SRCS = main.cpp Fixed.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
-CC = g++
+CC = c++
 
 RM = rm -f
 
@@ -14,6 +14,9 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) $(CPPFLAGS) $(OBJS) -o $(NAME)
+
+%.o: %.cpp
+	$(CC) $(CPPFLAGS) -c -o $@ $<
 
 clean:
 	$(RM) $(OBJS)
