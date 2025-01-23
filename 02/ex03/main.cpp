@@ -6,13 +6,11 @@
 /*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 10:56:07 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/01/22 19:07:48 by fmorenil         ###   ########.fr       */
+/*   Updated: 2025/01/23 11:00:43 by fmorenil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
-
-bool bsp( Point const a, Point const b, Point const c, Point const point);
 
 int main( void ) {
 	Fixed a;

@@ -6,7 +6,7 @@
 /*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:44:45 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/01/22 19:02:56 by fmorenil         ###   ########.fr       */
+/*   Updated: 2025/01/23 11:25:39 by fmorenil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@ class Point
 {
 public:
 	Point(void);
-	Point(Fixed& const a, Fixed& const b);
-	Point(Point& const otherPoint);
-	Point operator=(Point& const otherPoint);
+	Point(const float a, const float b);
+	Point(const Point& otherPoint) = delete;
+	Point& operator=(const Point& otherPoint);
 	~Point(void);
 	
 private:
-	Fixed const x;
-	Fixed const y;
+	const Fixed x;
+	const Fixed y;
 };
+
+bool bsp( Point const a, Point const b, Point const c, Point const point);
