@@ -6,7 +6,7 @@
 /*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:10:43 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/01/24 17:37:29 by fmorenil         ###   ########.fr       */
+/*   Updated: 2025/01/27 11:05:08 by fmorenil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,30 @@ ClapTrap::ClapTrap(void) : _name("Unnamed") {
 
 ClapTrap::~ClapTrap(void) {
 	std::cout << "ClapTrap destructor called" << std::endl;
+}
+
+int	ClapTrap::getHitP(void) {
+	return (this->hitPoints);
+}
+
+int	ClapTrap::getEnergyP(void) {
+	return (this->energyPoints);
+}
+
+int	ClapTrap::getAttackD(void) {
+	return (this->AttackDamage);
+}
+
+void	ClapTrap::setHitP(int num) {
+	this->hitPoints = num;
+}
+
+void	ClapTrap::setEnergyP(int num) {
+	this->energyPoints = num;
+}
+
+void	ClapTrap::setAttackD(int num) {
+	this->AttackDamage = num;
 }
 
 void	ClapTrap::attack(const std::string& target) {
