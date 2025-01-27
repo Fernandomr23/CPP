@@ -6,7 +6,7 @@
 /*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:16:21 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/01/27 12:01:46 by fmorenil         ###   ########.fr       */
+/*   Updated: 2025/01/27 13:34:52 by fmorenil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,14 @@ class ClapTrap
 	public:
 		ClapTrap(void);
 		ClapTrap(std::string name);
-		ClapTrap(std::string name, unsigned int hitPoints, unsigned int energyPoints, unsigned int attackDamage);
+		ClapTrap(std::string name, int hP, int eP, int aD);
+		ClapTrap(const ClapTrap& other);
 		~ClapTrap();
+		ClapTrap& operator=(const ClapTrap& other);
 		
-		int		getHitP(void);
-		int		getEnergyP(void);
-		int		getAttackD(void);
-		void	setHitP(int num);
-		void	setEnergyP(int num);
-		void	setAttackD(int num);
-		void	attack(const std::string& target);
-		void	takeDamage(unsigned int amount);
-		void	beRepaired(unsigned int amount);
+		void attack(const std::string& target);
+		void takeDamage(unsigned int amount);
+		void beRepaired(unsigned int amount);
 		
 	protected:
 		std::string	_name;
