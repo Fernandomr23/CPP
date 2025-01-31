@@ -6,24 +6,18 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 17:10:43 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/01/28 10:29:29 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:38:24 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap(void) : _name("Unnamed") {
+ClapTrap::ClapTrap(void) : _name("Unnamed"), hitPoints(10), energyPoints(10), AttackDamage(0) {
 	std::cout << "ClapTrap Default constructor called" << std::endl;
-	this->hitPoints = 10;
-	this->energyPoints = 10;
-	this->AttackDamage = 0;
 }
 
-ClapTrap::ClapTrap(std::string name) : _name(name) {
+ClapTrap::ClapTrap(std::string name) : _name(name), hitPoints(10), energyPoints(10), AttackDamage(0) {
 	std::cout << "ClapTrap name constructor called" << std::endl;
-	this->hitPoints = 10;
-	this->energyPoints = 10;
-	this->AttackDamage = 0;
 }
 
 ClapTrap::ClapTrap(std::string name, int hP, int eP, int aD) : _name(name), hitPoints(hP), energyPoints(eP), AttackDamage(aD) {
@@ -84,4 +78,10 @@ void	ClapTrap::beRepaired(unsigned int amount) {
 	else if (this->energyPoints <= 0) {
 		std::cout << this->_name << " don´t have enough energyPoints! " << std::endl;
 	}
+}
+
+void    ClapTrap::printStats(void) {
+    std::cout << "hitPoints -> " << this->hitPoints << std::endl;
+    std::cout << "energyPoints -> " << this->energyPoints << std::endl;
+    std::cout << "attackDamage -> " << this->AttackDamage << std::endl;
 }

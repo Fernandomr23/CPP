@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 10:48:06 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/01/28 10:23:31 by fernando         ###   ########.fr       */
+/*   Updated: 2025/01/28 12:44:31 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 #include "ClapTrap.hpp"
 
-class FragTrap : public ClapTrap
+class ScavTrap : virtual public ClapTrap
 {
 	public:
-		FragTrap(void);
-		FragTrap(std::string name);
-		FragTrap(std::string name, int hP, int eP, int aD);
-		FragTrap(const FragTrap& other);
-		~FragTrap(void);
-		FragTrap& operator=(const FragTrap& other);
+		ScavTrap(void);
+		ScavTrap(std::string name);
+		ScavTrap(std::string name, int hP, int eP, int aD);
+		ScavTrap(const ScavTrap& other);
+		~ScavTrap(void);
+		ScavTrap& operator=(const ScavTrap& other);
 
-		void	highFivesGuys(void);
+		void	guardGate();
 		void	attack(const std::string& target);
 	
 	private:
-	
+		bool	guard_mode;
 };

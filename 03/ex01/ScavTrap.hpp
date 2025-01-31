@@ -3,24 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 10:48:06 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/01/27 13:36:17 by fmorenil         ###   ########.fr       */
+/*   Updated: 2025/01/28 10:28:33 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#pragma once
 
 #include "ClapTrap.hpp"
 
 class ScavTrap : public ClapTrap
 {
 	public:
-		void	guardGate();
-		void	attack(const std::string& target);
 		ScavTrap(void);
 		ScavTrap(std::string name);
-		ScavTrap(ScavTrap& other);
+		ScavTrap(std::string name, int hP, int eP, int aD);
+		ScavTrap(const ScavTrap& other);
 		~ScavTrap(void);
+		ScavTrap& operator=(const ScavTrap& other);
+
+		void	guardGate();
+		void	attack(const std::string& target);
 	
 	private:
 		bool	guard_mode;

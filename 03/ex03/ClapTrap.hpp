@@ -1,32 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/27 10:48:06 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/01/28 10:23:31 by fernando         ###   ########.fr       */
+/*   Created: 2025/01/24 17:16:21 by fmorenil          #+#    #+#             */
+/*   Updated: 2025/01/28 13:19:42 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "ClapTrap.hpp"
+#include <iostream>
 
-class FragTrap : public ClapTrap
+class ClapTrap
 {
 	public:
-		FragTrap(void);
-		FragTrap(std::string name);
-		FragTrap(std::string name, int hP, int eP, int aD);
-		FragTrap(const FragTrap& other);
-		~FragTrap(void);
-		FragTrap& operator=(const FragTrap& other);
-
-		void	highFivesGuys(void);
+		ClapTrap(void);
+		ClapTrap(std::string name);
+		ClapTrap(std::string name, int hP, int eP, int aD);
+		ClapTrap(const ClapTrap& other);
+		~ClapTrap(void);
+		ClapTrap& operator=(const ClapTrap& other);
+		
 		void	attack(const std::string& target);
-	
-	private:
-	
+		void	takeDamage(unsigned int amount);
+		void	beRepaired(unsigned int amount);
+
+		void    printStats(void);
+		
+	protected:
+		std::string	_name;
+		int			hitPoints;
+		int			energyPoints;
+		int			AttackDamage;
 };
