@@ -3,31 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   DiamondTrap.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 10:35:12 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/28 13:35:14 by fernando         ###   ########.fr       */
+/*   Updated: 2025/02/03 13:55:50 by fmorenil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 
 DiamondTrap::DiamondTrap(void) : ClapTrap("Unnamed_clap_name"), _name("Unnamed") {
-    printStats();
 	std::cout << "DiamondTrap Default constructor called" << std::endl;
-	this->hitPoints = FragTrap::hitPoints;
-	this->energyPoints = ScavTrap::energyPoints;
-	this->AttackDamage = ClapTrap::AttackDamage;
-    printStats();
-
+	this->hitPoints = 100;
+	this->energyPoints = 50;
+	this->AttackDamage = 30;
 }
 
 
 DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), _name(name) {
 	std::cout << "DiamondTrap Name constructor called" << std::endl;
-	this->hitPoints = FragTrap::hitPoints;
-	this->energyPoints = ScavTrap::energyPoints;
-	this->AttackDamage = FragTrap::AttackDamage;
+	this->hitPoints = 100;
+	this->energyPoints = 50;
+	this->AttackDamage = 30;
 }
 
 DiamondTrap::DiamondTrap(std::string name, int hP, int eP, int aD) : ClapTrap(name + "_clap_name", hP, eP, aD), _name(name) {
@@ -49,6 +46,7 @@ DiamondTrap& DiamondTrap::operator=(const DiamondTrap& other) {
 	this->hitPoints = other.hitPoints;
 	this->energyPoints = other.energyPoints;
 	this->AttackDamage = other.AttackDamage;
+	ClapTrap::_name = this->_name + "_clap_name"; 
 	return (*this);
 }
 
