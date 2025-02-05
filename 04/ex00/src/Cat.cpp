@@ -6,11 +6,11 @@
 /*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 19:44:57 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/01/30 19:51:49 by fmorenil         ###   ########.fr       */
+/*   Updated: 2025/02/05 11:46:28 by fmorenil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include <Cat.hpp>
 
 Cat::Cat(void) : Animal("Cat") {
 	this->_type = "Cat";
@@ -19,7 +19,7 @@ Cat::Cat(void) : Animal("Cat") {
 Cat::~Cat(void) {}
 
 Cat::Cat(std::string type) : Animal("Cat") {
-	this->_type = "Cat";
+	this->_type = type;
 }
 
 Cat::Cat(const Cat &other) {
@@ -31,6 +31,6 @@ Cat& Cat::operator=(const Cat &other) {
 	return (*this);
 }
 
-void Cat::makeSound(void) {
+void Cat::makeSound(void) const {
 	std::cout << "Miau Miau Miau" << std::endl;
 }

@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/30 19:37:37 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/01/30 19:58:01 by fmorenil         ###   ########.fr       */
+/*   Created: 2025/01/30 19:44:57 by fmorenil          #+#    #+#             */
+/*   Updated: 2025/02/05 11:47:02 by fmorenil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include <WrongCat.hpp>
 
-Animal::Animal(void) : _type("noType") {}
+WrongCat::WrongCat(void) : WrongAnimal("WrongCat") {
+	this->_type = "WrongCat";
+}
 
-Animal::~Animal(void) {}
+WrongCat::~WrongCat(void) {}
 
-Animal::Animal(std::string type) : _type(type) {}
+WrongCat::WrongCat(std::string type) : WrongAnimal("WrongCat") {
+	this->_type = type;
+}
 
-Animal::Animal(Animal &other) {
+WrongCat::WrongCat(const WrongCat &other) {
 	*this = operator=(other);
 }
 
-Animal& Animal::operator=(Animal &other) {
+WrongCat& WrongCat::operator=(const WrongCat &other) {
 	this->_type = other._type;
 	return (*this);
 }
 
-std::string Animal::getType(void) {
-	return (this->_type);
-}
-
-void	Animal::makeSound(void) {
-	std::cout << "Animal make sound" << std::endl;
+void WrongCat::makeSound(void) const {
+	std::cout << "Miau Miau Miau" << std::endl;
 }

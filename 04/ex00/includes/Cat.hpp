@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/30 19:52:23 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/01/30 19:54:56 by fmorenil         ###   ########.fr       */
+/*   Created: 2025/01/30 19:42:52 by fmorenil          #+#    #+#             */
+/*   Updated: 2025/02/05 11:45:04 by fmorenil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
-#include "Cat.hpp"
+#pragma once
 
-int main()
-{
-	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
-	
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound();
-	j->makeSound();
-	meta->makeSound();
-	
-	return (0);
-}
+#include <Animal.hpp>
+
+class Cat : public Animal {
+	public:
+		Cat(void);
+		Cat(std::string type);
+		Cat(const Cat& other);
+		~Cat(void);
+		
+		Cat	&operator=(const Cat& other);
+
+		void makeSound(void) const;
+	private:
+};

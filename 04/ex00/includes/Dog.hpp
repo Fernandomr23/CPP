@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 19:42:52 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/01/30 19:52:09 by fmorenil         ###   ########.fr       */
+/*   Updated: 2025/02/05 11:44:52 by fmorenil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
+
 #include <Animal.hpp>
 
-class Cat : public Animal {
+class Dog : public Animal {
 	public:
-		Cat(void);
-		Cat(std::string type);
-		Cat(const Cat& other);
-		~Cat(void);
-		Cat	&operator=(const Cat& other);
+		Dog(void);
+		Dog(std::string type);
+		Dog(const Dog& other);
+		~Dog(void);
+		
+		Dog	&operator=(const Dog& other);
 
-		void makeSound(void);
+		void makeSound(void) const;
 	private:
 };
+
