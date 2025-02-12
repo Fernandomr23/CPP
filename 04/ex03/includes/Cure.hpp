@@ -10,12 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
+
 #include <AMateria.hpp>
 
-class Cure : virtual public AMateria
+class Cure : public AMateria
 {
 	private:
 		std::string	_type;
+		
 	public:
 		Cure(void);
 		Cure(Cure &other);
@@ -23,6 +26,7 @@ class Cure : virtual public AMateria
 
 		Cure &operator=(const Cure &other);
 
-		AMateria*	clone(void);
-		void 		use(ICharacter& target);
+		std::string const	&getType(void) const;
+		AMateria*			clone(void) const;
+		void 				use(ICharacter& target);
 };

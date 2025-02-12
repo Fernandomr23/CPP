@@ -1,8 +1,7 @@
-NAME = Animal
+NAME = Materia
 
-SRCS = src/main.cpp src/Dog.cpp src/Cat.cpp \
-	src/Animal.cpp src/WrongAnimal.cpp src/WrongCat.cpp \
-	src/Brain.cpp   
+SRCS = src/AMateria.cpp src/Character.cpp src/main.cpp \
+	   src/Cure.cpp src/Ice.cpp src/MateriaSource.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 CC = c++
