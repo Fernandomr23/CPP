@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 16:24:51 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/03/02 00:30:35 by fernando         ###   ########.fr       */
+/*   Updated: 2025/03/05 10:57:38 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ Bureaucrat::Bureaucrat(const std::string _name, int _grade) : name(_name), grade
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other) : name(other.name), grade(other.grade) {
 	std::cout << "Class Argument constructor called." << std::endl;
+	if (this->grade > 150) {
+		throw GradeTooLowException();
+	} else if (this->grade < 1) {
+		throw GradeTooHighException();
+	}
 }
 
 Bureaucrat::~Bureaucrat(void) {
@@ -37,6 +42,11 @@ Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& other) {
 	std::cout << "Copy constructor called" << std::endl;
 	if (this != &other) {
 		this->grade = other.grade;
+		if (this->grade > 150) {
+			throw GradeTooLowException();
+		} else if (this->grade < 1) {
+			throw GradeTooHighException();
+		}
 	}
 	return (*this);
 }
