@@ -6,19 +6,23 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 16:05:14 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/03/01 20:55:36 by fernando         ###   ########.fr       */
+/*   Updated: 2025/03/05 11:45:43 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
+#include "Form.hpp"
+
+class Form;
 
 class Bureaucrat
 {
 	private:
 		const std::string	name;
-		int					grade;				
+		int					grade;	
+					
 	public:
 		Bureaucrat(void);
 		Bureaucrat(const std::string _name, int _grade);
@@ -29,8 +33,10 @@ class Bureaucrat
 		const std::string	getName(void) const;
 		int					getGrade(void) const;
 		
-		void				increaseBureaucrat(void);
 		void				decreaseBureaucrat(void);
+		void				increaseBureaucrat(void);
+		
+		void                signForm(Form& form);
 
 		class GradeTooHighException : public std::exception {
 			public:
