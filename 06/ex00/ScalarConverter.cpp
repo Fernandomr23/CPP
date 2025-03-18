@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 12:48:16 by fernando          #+#    #+#             */
-/*   Updated: 2025/03/06 16:31:23 by fernando         ###   ########.fr       */
+/*   Updated: 2025/03/18 19:14:39 by fmorenil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+#include "checkConvert.hpp"
 
 ScalarConverter::ScalarConverter(void) {}
 
@@ -20,48 +21,27 @@ ScalarConverter&	ScalarConverter::operator=(const ScalarConverter& other) { (voi
 
 void ScalarConverter::convert(const std::string& literal)
 {
-	try
+	int	type = checkType(literal);
+	int	len = literal.length();
+	switch (type)
 	{
-		char c = static_cast<char>(std::stoi(literal));
-		if (isprint(c))
-			std::cout << "char: '" << c << "'" << std::endl;
-		else
-			std::cout << "char: Non displayable" << std::endl;
-			
+		case 0:
+			printChar(literal, len);
+			break;
+		case 1:
+			printInt(literal);
+			break;
+		case 2:
+			printSpecial(literal);
+			break;
+		case 3:
+			printFloat(literal);
+			break;
+		// case 3:
+		// 	printDouble(literal);
+		// 	break;
+		// default:
+		// 	printInvalid(litreal);
+		// 	break;
 	}
-	catch(const std::exception& e)
-	{
-		std::cout << "char: impossible" << std::endl;
-	}
-	
-	try 
-	{
-		int i = std::stoi(literal);
-		std::cout << "int: " << i << std::endl;
-	} 
-	catch (const std::exception& e) 
-	{
-		std::cout << "int: impossible" << std::endl;
-	}
-
-	try 
-	{
-		float f = std::stof(literal);
-		std::cout << "float: " << std::fixed << std::setprecision(1) << f << "f" << std::endl;
-	} 
-	catch (const std::exception& e) 
-	{
-		std::cout << "float: impossible" << std::endl;
-	}
-
-	try 
-	{
-		double d = std::stod(literal);
-		std::cout << "double: " << d << std::endl;
-	} 
-	catch (const std::exception& e) 
-	{
-		std::cout << "double: impossible" << std::endl;
-	}
-
 }
