@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkConvert.hpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:28:46 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/03/18 19:09:06 by fmorenil         ###   ########.fr       */
+/*   Updated: 2025/03/19 12:45:01 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,3 +25,6 @@ int		checkType(const std::string& literal);
 void	printChar(const std::string &literal, int len);
 void	printInt(const std::string &literal);
 void	printFloat(const std::string &literal);
+void	printDouble(const std::string &literal);
+void	printSpecial(const std::string &literal);
+void	printInvalid(void);

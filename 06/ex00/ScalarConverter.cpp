@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 12:48:16 by fernando          #+#    #+#             */
-/*   Updated: 2025/03/18 19:14:39 by fmorenil         ###   ########.fr       */
+/*   Updated: 2025/03/19 12:45:07 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ void ScalarConverter::convert(const std::string& literal)
 		case 3:
 			printFloat(literal);
 			break;
-		// case 3:
-		// 	printDouble(literal);
-		// 	break;
-		// default:
-		// 	printInvalid(litreal);
-		// 	break;
+		case 4:
+			printDouble(literal);
+			break;
+		default:
+			printInvalid();
+			break;
 	}
 }

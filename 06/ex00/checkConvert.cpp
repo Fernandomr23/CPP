@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkConvert.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:24:06 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/03/18 19:14:19 by fmorenil         ###   ########.fr       */
+/*   Updated: 2025/03/19 12:49:37 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,73 @@
 // 	std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(f) << std::endl;
 // }
 
-void	printFloat(const std::string &literal)
+void	printInvalid(void)
 {
-	float	f = std::atof(literal.c_str());
-	char	c = static_cast<char>(f);
+	std::cout << "char: invalid input" << std::endl;
+	std::cout << "int: invalid input" << std::endl;
+	std::cout << "float: invalid input" << std::endl;
+	std::cout << "double: invalid input" << std::endl;
+	
+}
+
+
+void	printSpecial(const std::string &literal)
+{
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
+	
+	if (!literal.compare("nan") || !literal.compare("nanf"))
+	{
+		std::cout << "float: nanf" << std::endl;
+		std::cout << "double: nan" << std::endl;
+	}
+	else
+	{
+		if (!literal.find("-"))
+		{
+			std::cout << "float: -inff" << std::endl;
+			std::cout << "double: -inf" << std::endl;
+		}
+		else
+		{
+			std::cout << "float: inff" << std::endl;
+			std::cout << "double: inf" << std::endl;
+		}
+	}
+}
+
+void	printDouble(const std::string &literal)
+{
+	double	d = std::atof(literal.c_str());
+	char	c = static_cast<char>(d);
+	
 	if (isprint(c))
 		std::cout << "char: '" << c << "'" << std::endl;
 	else
 		std::cout << "char: Non displayable" << std::endl;
-	std::cout << "int: " << static_cast<int>(f) << std::endl;
+	std::cout << "int: ";
+	if (static_cast<long>(d) < MIN_INT || static_cast<long>(d) > MAX_INT)
+		std::cout << "impossible"<< std::endl;
+	else
+		std::cout << static_cast<int>(d) << std::endl;
+	std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(d) << "f" << std::endl;
+	std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
+}
+
+void	printFloat(const std::string &literal)
+{
+	float	f = std::atof(literal.c_str());
+	char	c = static_cast<char>(f);
+	
+	if (isprint(c))
+		std::cout << "char: '" << c << "'" << std::endl;
+	else
+		std::cout << "char: Non displayable" << std::endl;
+	std::cout << "int: ";
+	if (static_cast<long>(f) < MIN_INT || static_cast<long>(f) > MAX_INT)
+		std::cout << "impossible"<< std::endl;
+	else
+		std::cout << static_cast<int>(f) << std::endl;
 	std::cout << "float: " << std::fixed << std::setprecision(1) << f << "f" << std::endl;
 	std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(f) << std::endl;
 }
@@ -87,6 +145,15 @@ static int	floatType(const std::string& str, size_t dot)
 		}
 	}
 	return (1);
+}
+
+static int	specialType(const std::string& str)
+{
+	if (!str.compare("+inff") || !str.compare("inff") || !str.compare("-inff") || !str.compare("nanf"))
+		return (1);
+	if (!str.compare("+inf") || !str.compare("inf") || !str.compare("-inf") || !str.compare("nan"))
+		return (1);
+	return (0);
 }
 
 static int	intType(const std::string& str)
