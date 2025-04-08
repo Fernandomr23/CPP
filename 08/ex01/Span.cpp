@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 17:01:07 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/03/26 18:01:08 by fmorenil         ###   ########.fr       */
+/*   Updated: 2025/04/08 16:01:07 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ void	Span::addNumber(int num)
 		this->size++;	
 	}
 	else
-		throw std::out_of_range("Limit reached");
+		throw Span::VectorIsFull();
 }
 
 int	Span::shortestSpan(void)
 {
 	if (this->size < 2)
-		throw std::out_of_range("Not enough numbers");
+		throw Span::VectorNotEnoughNumbers();
 		
 	std::vector<int> sorted = this->array;
 	std::sort(sorted.begin(), sorted.end());
@@ -69,7 +69,7 @@ int	Span::shortestSpan(void)
 int	Span::longestSpan(void)
 {
 	if (this->size < 2)
-		throw std::out_of_range("Not enough numbers");
+		throw Span::VectorNotEnoughNumbers();
 		
 	std::vector<int> sorted = this->array;
 	std::sort(sorted.begin(), sorted.end());
@@ -77,4 +77,21 @@ int	Span::longestSpan(void)
 	int	max = sorted[sorted.size() - 1] - sorted[0];
 	
 	return (max);
+}
+
+static int	randomInt(unsigned int size)
+{
+	int i = (rand() % size) + 1;
+	return (i);
+}
+
+void	Span::fill(void)
+{
+	srand((unsigned)time(0));
+	while (this->size < limit)
+	{
+		this->array.push_back(randomInt(this->limit * 2));
+		// std::cout << this->array[this->size] << std::endl;
+		this->size++;
+	}
 }

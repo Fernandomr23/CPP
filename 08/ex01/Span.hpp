@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:52:40 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/03/26 17:48:51 by fmorenil         ###   ########.fr       */
+/*   Updated: 2025/04/08 15:50:53 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,21 @@ class Span
 		
 		void	addNumber(int num);
 		int		shortestSpan();	
-		int		longestSpan();	
+		int		longestSpan();
+
+		void	fill(void);
+
+		// Exceptions
+
+		class VectorNotEnoughNumbers : public std::exception
+		{
+			public:
+				char const *what() const throw() { return ("Not enough numbers"); }
+		};
+
+		class VectorIsFull : public std::exception
+		{
+			public:
+				char const *what() const throw() { return ("Limit reached"); }
+		};
 };
