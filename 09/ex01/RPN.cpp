@@ -3,35 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 11:48:58 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/05/29 12:54:06 by fmorenil         ###   ########.fr       */
+/*   Updated: 2025/05/29 16:27:25 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 
+static bool isValidNumber(std::string token) {
+    if (token.size() > 2)
+        return (false);
+    if (!isdigit(token[0]) || !isdigit(token[token.size() - 1]))
+        return (false);
+    if (atoi(token.c_str()) > 10)
+        return (false);
+    return (true);
+}
+
 RPN::RPN(std::string input) {
     std::string token;
-    size_t pos = 0;
-
-    while ((pos = input.find(' ')) != std::string::npos) {
-        token = input.substr(0, pos);
-        if (token == "+" || token == "-" || token == "*" || token == "/")
-            calculateToken(token);
-        else
-            tokens.push_back(token);
-        input.erase(0, pos + 1);
+    size_t      pos = 0;
+    
+    try
+    {   
+        while ((pos = input.find(' ')) != std::string::npos) {
+            token = input.substr(0, pos);
+            if (token == "+" || token == "-" || token == "*" || token == "/") {
+                calculateToken(token);
+            }
+            else {
+                if (!isValidNumber(token))
+                    throw invalidNumberException(token);
+                tokens.push_back(token);
+            }
+            input.erase(0, pos + 1);
+        }
+        if (!input.empty()) {
+            calculateToken(input);
+        }
     }
-    if (!input.empty()) {
-        calculateToken(input);
-    }
-
-    std::vector<std::string>::iterator it;
-
-    for (it = tokens.begin(); it != tokens.end(); ++it) {
-        std::cout << *it << std::endl;
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+        exit (1);
     }
 }
 
@@ -51,6 +67,11 @@ RPN& RPN::operator=(const RPN &other) {
 }
 
 void    RPN::calculateToken(std::string& token) {
+
+    if (tokens.size() < 2) {
+        std::cerr << "Error" << std::endl;
+        exit (1);
+    }
     int num2 = atoi(tokens.back().c_str());
     tokens.pop_back();
     
@@ -58,17 +79,22 @@ void    RPN::calculateToken(std::string& token) {
     tokens.pop_back();
 
     int result = 0;
-    
-    if (token == "+") {
-        result = num1 + num2;
-    } else if (token == "-") {
-        result = num1 - num2;
-    } else if (token == "*") {
-        result = num1 * num2;
-    } else if (token == "/") {
-        result = num1 / num2;
-    } else {
-        throw std::invalid_argument("Invalid operator: " + token);
+    try
+    {   
+        if (token == "+") {
+            result = num1 + num2;
+        } else if (token == "-") {
+            result = num1 - num2;
+        } else if (token == "*") {
+            result = num1 * num2;
+        } else if (token == "/") {
+            result = num1 / num2;
+        }
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << std::endl;
+        exit(1);
     }
     std::stringstream ss;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 11:48:54 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/05/29 12:46:21 by fmorenil         ###   ########.fr       */
+/*   Updated: 2025/05/29 16:29:05 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <algorithm>
 #include <cstdlib>
 #include <sstream>
+#include <exception>
 
 class RPN
 {
@@ -40,8 +41,23 @@ class RPN
                 std::string error;
 
             public:
-                invalidNumberException(std::string _error) : error("Invalid number: " + _error) {};
+                invalidNumberException(std::string _error) : error("Error: Invalid number: " + _error) {};
                 virtual ~invalidNumberException() throw() {};
+                
+                virtual const char *what() const throw()
+                {
+                    return (error.c_str());
+                }
+        };
+
+        class invalidOperators : public std::exception
+        {
+            private:
+                std::string error;
+
+            public:
+                invalidOperators(std::string token) : error("Invalid operator combination: " + token) {};
+                virtual ~invalidOperators() throw() {};
                 
                 virtual const char *what() const throw()
                 {
