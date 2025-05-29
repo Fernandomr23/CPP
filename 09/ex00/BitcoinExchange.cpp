@@ -6,7 +6,7 @@
 /*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 10:34:29 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/05/29 11:12:29 by fmorenil         ###   ########.fr       */
+/*   Updated: 2025/05/29 11:30:16 by fmorenil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,27 @@ std::string    BitcoinExchange::similarDate(std::string& date)
 {
     std::map<std::string, float>::iterator it = this->data.lower_bound(date);
     
+    if (it == this->data.begin() && it->first > date)
+    {
+        return (it->first);
+    }
+
     while (it != this->data.end())
     {
         if (it->first > date)
             break;
         it++;
     }
-    
+    --it;
     return (it->first);
+}
+
+static void isValidValue(float value)
+{
+    if (value < 0)
+        throw std::invalid_argument("Error: not a positive number.");
+    if (value > 1000)
+        throw std::invalid_argument("Error: too large a number.");
 }
 
 void    BitcoinExchange::calculateExchange(const std::string& input)
@@ -94,8 +107,8 @@ void    BitcoinExchange::calculateExchange(const std::string& input)
             
             if (date == "date ")
                 continue ;
-            if (!isValidDate(date))
-                throw invalidDateException();
+            if (!isValidDate(date) || date.size() == line.size())
+                throw invalidDateException(date);
             
             if (this->data.find(date) == this->data.end())
                 valueDate = similarDate(date);
@@ -103,6 +116,8 @@ void    BitcoinExchange::calculateExchange(const std::string& input)
                 valueDate = date;
                 
             float value = atof(line.substr(line.find('|') + 1).c_str());
+            isValidValue(value);
+            
             std::cout << date << " => " << std::fixed << std::setprecision(2) 
                       << value << " = " << value * this->data[valueDate] << std::endl;
         }

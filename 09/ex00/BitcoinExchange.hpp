@@ -6,7 +6,7 @@
 /*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 13:47:10 by fernando          #+#    #+#             */
-/*   Updated: 2025/05/29 11:11:49 by fmorenil         ###   ########.fr       */
+/*   Updated: 2025/05/29 11:30:02 by fmorenil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,16 @@ class BitcoinExchange
 
 		class	invalidDateException : public std::exception
 		{
+			private:
+				std::string date;
+
 			public:
+				invalidDateException(std::string& _date) { this->date = "Error: bad input => " + _date; }
+				virtual ~invalidDateException() throw() {}
+				
 				virtual const char* what() const throw()
 				{
-					return "Error: invalid date format";
+					return (this->date.c_str());
 				}
 		};
 
