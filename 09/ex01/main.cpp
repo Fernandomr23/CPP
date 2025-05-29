@@ -6,7 +6,7 @@
 /*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 11:56:49 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/05/29 11:57:29 by fmorenil         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:50:12 by fmorenil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int main(int argc, char **argv)
     }
 
     RPN rpn(argv[1]);
+    
+    std::cout << "Result: " << rpn.calculateResult() << std::endl;
 
     return (0);
 }

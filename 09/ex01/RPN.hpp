@@ -6,7 +6,7 @@
 /*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 11:48:54 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/05/29 11:57:52 by fmorenil         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:46:21 by fmorenil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <cstdlib>
+#include <sstream>
 
 class RPN
 {
@@ -25,10 +27,13 @@ class RPN
         RPN();
         RPN(std::string input);
         ~RPN();
-        RPN(const RPN &other);
+        RPN(const RPN& other);
 
-        RPN &operator=(const RPN &other);
+        RPN &operator=(const RPN& other);
         
+        void    calculateToken(std::string& token);
+        int     calculateResult();
+
         class invalidNumberException : public std::exception
         {
             private:
