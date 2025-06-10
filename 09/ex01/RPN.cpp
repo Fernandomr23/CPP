@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 11:48:58 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/05/29 16:27:25 by fernando         ###   ########.fr       */
+/*   Updated: 2025/06/10 17:23:00 by fmorenil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ void    RPN::calculateToken(std::string& token) {
             result = num1 * num2;
         } else if (token == "/") {
             result = num1 / num2;
+        } else {
+            throw invalidOperators(token);
         }
     }
     catch(const std::exception& e)
