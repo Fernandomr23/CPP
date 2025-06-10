@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/23 13:52:13 by fernando          #+#    #+#             */
-/*   Updated: 2025/06/10 15:46:09 by fmorenil         ###   ########.fr       */
+/*   Created: 2025/06/02 09:55:57 by fmorenil          #+#    #+#             */
+/*   Updated: 2025/06/02 10:04:21 by fmorenil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "BitcoinExchange.hpp"
+#pragma once
 
-int main(int argc, char **argv)
+#include <iostream>
+#include <deque>
+#include <list>
+#include <algorithm>
+
+class PmergeMe
 {
-	if (argc != 2) {
-		std::cerr << "Error: wrong number of arguments" << std::endl;
-		return (1);
-	}
-	
-	BitcoinExchange btc;
+    private:
+        std::deque<int>   deque;
+        std::list<int>   list;
+    
+    public:
+        PmergeMe();
+        ~PmergeMe();
+        PmergeMe(const PmergeMe &other);
 
-	btc.calculateExchange(argv[1]);
-	
-    return (0);
-}
+        PmergeMe &operator=(const PmergeMe &other);
+        
+};

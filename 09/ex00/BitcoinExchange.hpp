@@ -6,7 +6,7 @@
 /*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 13:47:10 by fernando          #+#    #+#             */
-/*   Updated: 2025/05/29 11:30:02 by fmorenil         ###   ########.fr       */
+/*   Updated: 2025/06/10 15:46:52 by fmorenil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,5 @@ class BitcoinExchange
 				{
 					return (this->date.c_str());
 				}
-		};
-
-		class	notFoundDateException : public std::exception
-		{
-			private:
-				std::string date;
-				
-			public:
-				notFoundDateException(std::string& _date) { this->date = "Error: date not found in data.csv: " + _date; }
-				virtual ~notFoundDateException() throw() {}
-				
-				virtual const char* what() const throw()
-				{
-					return (date.c_str());
-				}
-		};
-		
+		};		
 };

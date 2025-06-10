@@ -6,7 +6,7 @@
 /*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 10:34:29 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/05/29 11:30:16 by fmorenil         ###   ########.fr       */
+/*   Updated: 2025/06/10 15:46:25 by fmorenil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void    BitcoinExchange::calculateExchange(const std::string& input)
     std::string     line;
 
     if (!file.is_open()) {
-        std::cerr << "Error: could not open data file." << std::endl;
+        std::cerr << "Error: could not open file." << std::endl;
         return ;
     }
 
