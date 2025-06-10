@@ -6,7 +6,7 @@
 /*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 10:34:29 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/06/10 15:46:25 by fmorenil         ###   ########.fr       */
+/*   Updated: 2025/06/10 17:14:23 by fmorenil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,31 @@
 #include <cstdlib>
 #include <iomanip>
 
+static bool isValidDay(int month, int day, int year)
+{
+    if (month < 1 || month > 12)
+        return false;
+
+    int leapYear = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) ? 29 : 28;
+    int daysInMonth[] = { 31, leapYear, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+    if (day < 1 || day > daysInMonth[month - 1])
+        return false;
+    return true;
+}
+
 static bool isValidDate(const std::string& date)
 {
     if (date.length() > 11 || date[4] != '-' || date[7] != '-')
         return false;
+
     for (int i = 0; i < 10; ++i) {
         if (i == 4 || i == 7)
             continue;
         if (!isdigit(date[i]))
             return false;
     }
-    return true;
+    bool isValid = isValidDay(atoi(date.substr(5, 2).c_str()), atoi(date.substr(8, 2).c_str()), atoi(date.substr(0, 4).c_str()));
+    return isValid;
 }
 
 BitcoinExchange::BitcoinExchange() 
@@ -109,7 +123,6 @@ void    BitcoinExchange::calculateExchange(const std::string& input)
                 continue ;
             if (!isValidDate(date) || date.size() == line.size())
                 throw invalidDateException(date);
-            
             if (this->data.find(date) == this->data.end())
                 valueDate = similarDate(date);
             else

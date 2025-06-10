@@ -6,7 +6,7 @@
 /*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 13:47:10 by fernando          #+#    #+#             */
-/*   Updated: 2025/06/10 15:46:52 by fmorenil         ###   ########.fr       */
+/*   Updated: 2025/06/10 16:41:15 by fmorenil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,5 @@ class BitcoinExchange
 				{
 					return (this->date.c_str());
 				}
-		};		
+		};	
 };
