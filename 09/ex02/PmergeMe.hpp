@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 09:55:57 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/06/11 18:30:17 by fernando         ###   ########.fr       */
+/*   Updated: 2025/06/12 18:43:46 by fmorenil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,43 @@ class PmergeMe
         std::list<int>		list;
     
     public:
-        PmergeMe(const std::string &input);
+        PmergeMe(char **argv);
         ~PmergeMe();
         PmergeMe(const PmergeMe &other);
 
         PmergeMe &operator=(const PmergeMe &other);
 
-		void	createContainers(const std::string &input);
+		void	createContainers(char **argv);
+        bool    isValidNumber(char *argv);
+        
 		void	sortList();
+        void    printList();
+        
 		void	sortDeque();
-		void	printContainers();
+        void    printDeque();
+        
+		template <typename Container>
+        void printContainer(const Container& container)
+        {
+            if (container.empty())
+                return;
 
+            typename Container::const_iterator it;
+            int count = container.size() > 9 ? 0 : -1;
+
+            for (it = container.begin(); it != container.end(); it++) {
+                std::cout << (*it) << " ";
+                if (count != -1) {
+                    count++;
+                    if (count == 9) {
+                        std::cout << "[...]";
+                        break;
+                    }
+                }
+            }
+            std::cout << std::endl;
+        }
+        
         class invalidNumberException : public std::exception
         {
             public:

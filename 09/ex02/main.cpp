@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 11:56:49 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/06/11 18:34:17 by fernando         ###   ########.fr       */
+/*   Updated: 2025/06/12 18:49:19 by fmorenil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,22 @@
 
 int main(int argc, char **argv)
 {
-    PmergeMe pmergeMe("1 2 3 5");
-    (void)argc; // To avoid unused parameter warning
-    (void)argv; // To avoid unused parameter warning
-    pmergeMe.printContainers();
+    if (argc < 2) {
+        std::cerr << "./PmergeMe \"1 2 3 4 5\"" << std::endl;
+        return (1);
+    }
+    PmergeMe pmergeMe(argv);
 
+    std::cout << "Before:  ";
+    pmergeMe.printDeque();
+    // pmergeMe.printList();
+
+    pmergeMe.sortDeque();
+    // pmergeMe.sortList();
+    
+    std::cout << "After:   ";
+    pmergeMe.printDeque();
+
+    // pmergeMe.printTimes();
     return (0);
 }
