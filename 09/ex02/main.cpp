@@ -6,11 +6,12 @@
 /*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 11:56:49 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/06/12 18:49:19 by fmorenil         ###   ########.fr       */
+/*   Updated: 2025/06/12 21:35:49 by fmorenil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <sys/time.h>
 #include "PmergeMe.hpp"
 
 int main(int argc, char **argv)
@@ -20,17 +21,26 @@ int main(int argc, char **argv)
         return (1);
     }
     PmergeMe pmergeMe(argv);
-
+    struct timeval start, end;
+    
     std::cout << "Before:  ";
     pmergeMe.printDeque();
-    // pmergeMe.printList();
 
+    gettimeofday(&start, NULL);
     pmergeMe.sortDeque();
-    // pmergeMe.sortList();
+    gettimeofday(&end, NULL);
+    double elapsedD = (end.tv_sec - start.tv_sec) * 1e6 + (end.tv_usec - start.tv_usec);
+    pmergeMe.setDTime(elapsedD);
+    
+    gettimeofday(&start, NULL);
+    pmergeMe.sortList();
+    gettimeofday(&end, NULL);
+    double elapsedL = (end.tv_sec - start.tv_sec) * 1e6 + (end.tv_usec - start.tv_usec);
+    pmergeMe.setLTime(elapsedL);
     
     std::cout << "After:   ";
-    pmergeMe.printDeque();
+    pmergeMe.printList();
 
-    // pmergeMe.printTimes();
+    pmergeMe.printTimes();
     return (0);
 }

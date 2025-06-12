@@ -6,13 +6,15 @@
 /*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 18:17:38 by fernando          #+#    #+#             */
-/*   Updated: 2025/06/12 18:42:18 by fmorenil         ###   ########.fr       */
+/*   Updated: 2025/06/12 21:18:09 by fmorenil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
 PmergeMe::PmergeMe(char **argv) {
+    this->dTime = 0;
+    this->lTime = 0;
 	createContainers(argv);
 }
 
@@ -23,12 +25,14 @@ PmergeMe::PmergeMe(const PmergeMe &other) {
 }
 
 PmergeMe& PmergeMe::operator=(const PmergeMe &other) {
-	if (this == &other) {
+	if (this == &other)
 		return (*this);
-	}
+        
 	this->deque = other.deque;
 	this->list = other.list;
-	
+    this->dTime = other.dTime;
+    this->lTime = other.lTime;
+    
 	return (*this);
 }
 
@@ -62,6 +66,14 @@ bool	PmergeMe::isValidNumber(char *argv) {
 		}
 	}
 	return (true);
+}
+
+void	PmergeMe::printDeque() {
+	this->printContainer(this->deque);
+}
+
+void	PmergeMe::printList() {
+	this->printContainer(this->list);
 }
 
 static void	insertionSortDeque(std::deque<int>& dq, int left, int right) {
@@ -101,10 +113,80 @@ void	PmergeMe::sortDeque() {
 	mergeInsertSortDeque(this->deque, 0, this->deque.size() - 1);
 }
 
-void	PmergeMe::printDeque() {
-	this->printContainer(this->deque);
+static void insertionSortList(std::list<int>& lst) {
+    if (lst.size() < 2)
+		return;
+		
+	std::list<int>::iterator it = lst.begin();
+	++it;
+    for (; it != lst.end(); it++) {
+        int key = *it;
+        std::list<int>::iterator j = it;
+        std::list<int>::iterator prev;
+        while (j != lst.begin()) {
+			prev = j;
+			--prev;
+			if (*prev <= key)
+				break ;
+            *j = *prev;
+            j = prev;
+        }
+        *j = key;
+    }
 }
 
-void	PmergeMe::printList() {
-	this->printContainer(this->list);
+static void mergeLists(std::list<int>& left, std::list<int>& right, std::list<int>& result) {
+    result.clear();
+    std::list<int>::iterator itL = left.begin();
+    std::list<int>::iterator itR = right.begin();
+
+    while (itL != left.end() && itR != right.end()) {
+        if (*itL < *itR) {
+            result.splice(result.end(), left, itL++);
+        } else {
+            result.splice(result.end(), right, itR++);
+        }
+    }
+    result.splice(result.end(), left);
+    result.splice(result.end(), right);
+}
+
+static void mergeInsertSortList(std::list<int>& lst) {
+    if (lst.size() <= 10) {
+        insertionSortList(lst);
+        return;
+    }
+
+    std::list<int> left, right;
+    std::list<int>::iterator mid = lst.begin();
+    std::advance(mid, lst.size() / 2);
+
+    left.splice(left.begin(), lst, lst.begin(), mid);
+    right.splice(right.begin(), lst, lst.begin(), lst.end());
+
+    mergeInsertSortList(left);
+    mergeInsertSortList(right);
+
+    mergeLists(left, right, lst);
+}
+
+void	PmergeMe::sortList() {
+	if (this->list.empty())
+		return ;
+	mergeInsertSortList(this->list);
+}
+
+void    PmergeMe::printTimes() {
+    std::cout << "Time to process a range of " << this->deque.size() << " elements with std::deque : "
+        << std::fixed << std::setprecision(5) << this->dTime << " us" << std::endl;
+    std::cout << "Time to process a range of " << this->list.size() << " elements with std::list  : "
+        << std::fixed << std::setprecision(5) << this->lTime << " us" << std::endl;
+}
+
+void    PmergeMe::setDTime(double timeValue) {
+    this->dTime = timeValue;
+}
+
+void    PmergeMe::setLTime(double timeValue) {
+    this->lTime = timeValue;
 }

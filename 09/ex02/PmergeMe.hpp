@@ -6,7 +6,7 @@
 /*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 09:55:57 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/06/12 18:43:46 by fmorenil         ###   ########.fr       */
+/*   Updated: 2025/06/12 21:16:52 by fmorenil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,16 @@
 #include <list>
 #include <sstream>
 #include <algorithm>
+#include <iterator>
+#include <iomanip>
 
 class PmergeMe
 {
     private:
         std::deque<int>		deque;
         std::list<int>		list;
+        double              dTime;
+        double              lTime;
     
     public:
         PmergeMe(char **argv);
@@ -30,6 +34,9 @@ class PmergeMe
         PmergeMe(const PmergeMe &other);
 
         PmergeMe &operator=(const PmergeMe &other);
+
+        void    setDTime(double timeVal);
+        void    setLTime(double timeVal);
 
 		void	createContainers(char **argv);
         bool    isValidNumber(char *argv);
@@ -39,6 +46,8 @@ class PmergeMe
         
 		void	sortDeque();
         void    printDeque();
+
+        void    printTimes();
         
 		template <typename Container>
         void printContainer(const Container& container)
