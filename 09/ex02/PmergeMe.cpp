@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 18:17:38 by fernando          #+#    #+#             */
-/*   Updated: 2025/06/12 21:18:09 by fmorenil         ###   ########.fr       */
+/*   Updated: 2025/06/15 18:22:20 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 PmergeMe::PmergeMe(char **argv) {
     this->dTime = 0;
     this->lTime = 0;
+    this->isValid = true;
 	createContainers(argv);
 }
 
@@ -32,12 +33,17 @@ PmergeMe& PmergeMe::operator=(const PmergeMe &other) {
 	this->list = other.list;
     this->dTime = other.dTime;
     this->lTime = other.lTime;
+    this->isValid = other.isValid;
     
 	return (*this);
 }
 
 const char* PmergeMe::invalidNumberException::what() const throw() {
 	return "Error";
+}
+
+bool PmergeMe::getIsValid() {
+    return this->isValid;
 }
 
 void	PmergeMe::createContainers(char **argv) {
@@ -54,6 +60,7 @@ void	PmergeMe::createContainers(char **argv) {
 			std::cerr << e.what() << std::endl;
 			this->deque.clear();
 			this->list.clear();
+            this->isValid = false;
 			break ;
 		}
 	}
@@ -177,10 +184,9 @@ void	PmergeMe::sortList() {
 }
 
 void    PmergeMe::printTimes() {
-    std::cout << "Time to process a range of " << this->deque.size() << " elements with std::deque : "
-        << std::fixed << std::setprecision(5) << this->dTime << " us" << std::endl;
-    std::cout << "Time to process a range of " << this->list.size() << " elements with std::list  : "
-        << std::fixed << std::setprecision(5) << this->lTime << " us" << std::endl;
+    std::cout << std::fixed << std::setprecision(5);
+    std::cout << "Time to process a range of " << this->deque.size() << " elements with std::deque : " << this->dTime << " us" << std::endl;
+    std::cout << "Time to process a range of " << this->list.size() << " elements with std::list  : " << this->lTime << " us" << std::endl;
 }
 
 void    PmergeMe::setDTime(double timeValue) {

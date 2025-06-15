@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 09:55:57 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/06/12 21:16:52 by fmorenil         ###   ########.fr       */
+/*   Updated: 2025/06/15 18:22:24 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ class PmergeMe
         std::list<int>		list;
         double              dTime;
         double              lTime;
+        bool                isValid;
     
     public:
         PmergeMe(char **argv);
@@ -37,6 +38,8 @@ class PmergeMe
 
         void    setDTime(double timeVal);
         void    setLTime(double timeVal);
+
+        bool    getIsValid();
 
 		void	createContainers(char **argv);
         bool    isValidNumber(char *argv);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmorenil <fmorenil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 11:56:49 by fmorenil          #+#    #+#             */
-/*   Updated: 2025/06/12 21:35:49 by fmorenil         ###   ########.fr       */
+/*   Updated: 2025/06/15 18:26:46 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,25 @@ int main(int argc, char **argv)
         return (1);
     }
     PmergeMe pmergeMe(argv);
-    struct timeval start, end;
+
+    if (!pmergeMe.getIsValid())
+    return (1);
     
+    struct timeval start, end;
     std::cout << "Before:  ";
     pmergeMe.printDeque();
 
     gettimeofday(&start, NULL);
     pmergeMe.sortDeque();
     gettimeofday(&end, NULL);
-    double elapsedD = (end.tv_sec - start.tv_sec) * 1e6 + (end.tv_usec - start.tv_usec);
+    
+    double elapsedD = (end.tv_sec - start.tv_sec) * 1e6 + (end.tv_usec - start.tv_usec) * 1.0;
     pmergeMe.setDTime(elapsedD);
     
     gettimeofday(&start, NULL);
     pmergeMe.sortList();
     gettimeofday(&end, NULL);
+    
     double elapsedL = (end.tv_sec - start.tv_sec) * 1e6 + (end.tv_usec - start.tv_usec);
     pmergeMe.setLTime(elapsedL);
     
